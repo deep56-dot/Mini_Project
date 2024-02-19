@@ -76,13 +76,22 @@ String String::toString(int num) {
 }
 
 String& String::append(const String& other) {
+ 
+    auto len{ other.m_size };
+    try {
+        auto len = m_size + other.m_size;
+        auto str = std::make_unique<char[]>(len + 1);
+        memcpy(str.get(), buffer.get(), m_size);
+        memcpy(str.get() + m_size, other.buffer.get(), other.m_size);
+        str.get()[len] = '\0';
+        this->m_size = len;
+        this->buffer = std::move(str);
+        return *this;
+    }
+    catch (std::bad_alloc) {
+        throw "Dynamic memory is not available \n";
+    }
 
-    auto len = m_size + other.m_size;
-    std::unique_ptr<char[]> str = std::make_unique<char[]>(len + 1);
-    memcpy(str.get(),buffer.get(), m_size);
-    memcpy(str.get() + m_size, other.buffer.get(), other.m_size);
-    str.get()[len] = '\0';
-    m_size = len;
     return *this;
 
 }

@@ -1,0 +1,2 @@
+30/1/2024 [my]  [[31mError[0m] my error
+30/1/2024 [my]  [[41;37mCritical[0m] my critical

@@ -2,22 +2,29 @@
 #include "./Include/Log.h"
 #include "./Include/Date.h"
 #include "./Include/String.h"
+#include "./Include/logger.h"
 
 using Utility::date;
 using Type::String;
 using loging::Log;
 
+
 int main()
 {
-    Log log;
-    log = { Log::Level::LevelInfo };
-    log.Info("Fine!");
-    log.Warn("Carefull!");
-    log.Error("Stop!");
+    loging::Info("Fine!","ifdjs","iesdfju");
+    loging::Warn("Carefull!");
+    loging::Error("Stop!");
+    loging::Info("Fine!", "ifdjs", "iesdfju");
+    loging::default_logger()->setFileDump(false);
+    loging::Warn("Carefull!");
+    loging::Error("Stop!");
+    loging::default_logger()->setFileDump(true);
+    auto l = std::make_shared<Log>("my","my.txt");
+    loging::Info("myInfo");
+    loging::setDefaultLogger(l);
+    l->log(Log::Level::LevelDebug, "my debug");
+    l->log(Log::Level::LevelError, "my error");
+    l->log(Log::Level::LevelCritical, "my critical");
 
-    String s1("Deep");
-    date d1;
-    d1.setDate(30, 2, 2024);
-    std::cout << s1[6]<<"\n";
 }
 

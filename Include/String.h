@@ -15,7 +15,7 @@ namespace Type {
 	public:
 		String(const char* string = "") {
 			m_size = static_cast<unsigned int>(strlen(string));
-			buffer = std::make_unique<char[]>(m_size + 1);
+			buffer = std::make_unique<char[]>(m_size+1);
 			memcpy(buffer.get(), string, m_size);
 			buffer.get()[m_size] = 0;
 		}
@@ -45,7 +45,9 @@ namespace Type {
 
 		String& to_upper();
 
-
+		char* getString() {
+			return buffer.get();
+		}
 		friend std::ostream& operator<<(std::ostream& stream, const String& string);
 
 	};

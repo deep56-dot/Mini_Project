@@ -14,7 +14,7 @@ namespace Utility {
 		mutable bool cache_valid = false;
 		mutable String cache{};
 	public:
-		date(int dd=1, int mm=1, int yy=1970) : d{ dd }, m{ mm }, y{ yy } {}
+		date(int dd, int mm, int yy) : d{ dd }, m{ mm }, y{ yy } {}
 		void setDate(int , int , int );
 		int getDay() const { return d; };
 		int getMonth() const { return m; };

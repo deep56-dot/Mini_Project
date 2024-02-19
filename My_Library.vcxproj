@@ -149,6 +149,7 @@
     <ClInclude Include="Include\Log.h" />
     <ClInclude Include="Include\MyException.h" />
     <ClInclude Include="Include\String.h" />
+    <ClInclude Include="Include\logger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

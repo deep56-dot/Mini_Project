@@ -1,0 +1,5 @@
+30/1/2024 [Deep]  [[32mInfo[0m] Fine!ifdjsiesdfju
+30/1/2024 [Deep]  [[33mWarning[0m] Carefull!
+30/1/2024 [Deep]  [[31mError[0m] Stop!
+30/1/2024 [Deep]  [[32mInfo[0m] Fine!ifdjsiesdfju
+30/1/2024 [Deep]  [[32mInfo[0m] myInfo

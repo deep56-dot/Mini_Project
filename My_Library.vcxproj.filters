@@ -27,6 +27,9 @@
     <ClInclude Include="Include\MyException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Log.cpp">
