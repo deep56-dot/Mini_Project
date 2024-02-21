@@ -1,6 +1,7 @@
 #include <iostream>
+#include<string>
 #include "../Include/Date.h"
-#include "../Include/String.h"
+//#include "../Include/std::string.h"
 #include "../Include/MyException.h"
 using Utility::date;
 
@@ -56,12 +57,11 @@ date& date::addYear(int n) {
 }
 
 date& date::addDay(int n) {
-	/*int days[12] = { 31 , 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };*/
+	
 	cache_valid = false;
 	for (int i = 0; i < n; i++)
 	{
 		this->d++;
-		/*if (this->d > days[m - 1] || (m == 2 && this->d == 29 && !isLeapYear(y)))*/
 		if(this->d>(date::DaysInMonth(m,y)))
 		{
 			this->d = 1;
@@ -105,12 +105,12 @@ date& date::addMonth(int month) {
 	return *this;
 }
 
-String Utility::date::getstringval() const{
+std::string Utility::date::getstringval() const{
 	if (!cache_valid) {
-		String ans;
-		String Day = String::toString(d);
-		String Month = String::toString(m);
-		String Year = String::toString(y);
+		std::string ans;
+		std::string Day = std::to_string(d);
+		std::string Month = std::to_string(m);
+		std::string Year = std::to_string(y);
 		ans = Day + "/" + Month + "/" + Year;
 		
 		cache = ans;

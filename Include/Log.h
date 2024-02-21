@@ -2,8 +2,11 @@
 #define _LOG_
 
 #include<iostream>
+#include<string>
+#include<chrono>
+#include<ctime>
 #include "Date.h"
-#include "String.h"
+//#include "String.h"
 
 namespace loging {
     class Log {
@@ -12,9 +15,9 @@ namespace loging {
             LevelCritical=0,LevelError, LevelWarning, LevelInfo, LevelDebug
         };
 
-        Log(Type::String name, Type::String fn= "defaultlog.txt") : m_LogLevel{ Level::LevelInfo }, logger{ name }, fileName{fn} {}
+        Log(std::string name, std::string fn= "defaultlog.txt") : m_LogLevel{ Level::LevelInfo }, logger{ name }, fileName{fn} {}
 
-        Log(Type::String name, Level level, Type::String fn= "defaultlog.txt") : m_LogLevel{ level }, logger{ name }, fileName{ fn } {}
+        Log(std::string name, Level level, std::string fn= "defaultlog.txt") : m_LogLevel{ level }, logger{ name }, fileName{ fn } {}
 
         ~Log();
 
@@ -25,44 +28,76 @@ namespace loging {
         template<typename... T>
         void log(Level l, T... arg);
 
+        std::string cacheTime() {
+            auto now = std::chrono::system_clock::now();
+            std::time_t time = std::chrono::system_clock::to_time_t(now); // to_time_t is a method for converting chrono::time in to time_t(ctime)
+
+            //Now time_t is in non readable formate so we have to conver it into redable formate 
+            std::tm tmLocal; // tm is a structure which stores the values in its variables 
+            localtime_s(&tmLocal, &time); //now we store time_t into tm
+
+            char buffer[20];
+            std::strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", &tmLocal); //formatting tm and stores it into buffer
+
+            return std::string(buffer);
+        }
 
         void setupBuffer() {}
         template<typename m, typename... T>
         void setupBuffer(m s1, T... others) {
             logBuffer.append(s1);
+            logBuffer.append(" ");
             setupBuffer(others...);
         }
         void setFileDump(bool val) {
             fileDump=val;
         }
     private:
-        Type::String getlevel(Level l) const {
+        std::string getlevelwithColor(Level l) const {
             switch (l) {
             case Level::LevelError:
-                return "\033[31mError\033[0m";
-
+                return "\033[31m""[Error]""\033[0m";
+  
             case Level::LevelWarning:
-                return "\033[33mWarning\033[0m";
+                return "\033[33m""[Warning]""\033[0m";
 
             case Level::LevelInfo:
-                return "\033[32mInfo\033[0m";
+                return "\033[32m""[Info]""\033[0m";
 
             case Level::LevelDebug:
                 return "Debug";
 
             case Level::LevelCritical:
-                return "\033[41;37mCritical\033[0m";
+                return "\033[41;37m""[Critical]""\033[0m";
+            }
+        }
+
+        std::string getlevel(Level l) const {
+            switch (l) {
+            case Level::LevelError:
+                return "[Error]";
+
+            case Level::LevelWarning:
+                return "[Warning]";
+
+            case Level::LevelInfo:
+                return "[Info]";
+
+            case Level::LevelDebug:
+                return "Debug";
+
+            case Level::LevelCritical:
+                return "[Critical]";
             }
         }
 
 
-        String logBuffer;
+        std::string logBuffer;
         Level m_LogLevel;
         int m_cnt{ 0 };
         bool fileDump = true;
-        Type::String logger;
-        Utility::date d1{ 30,1,2024 };
-        String fileName;
+        std::string logger;
+        std::string fileName;
         void print() const {
             std::cout << "\n";
         }

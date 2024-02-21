@@ -1,5 +1,5 @@
-30/1/2024 [Deep]  [[32mInfo[0m] Fine!ifdjsiesdfju
-30/1/2024 [Deep]  [[33mWarning[0m] Carefull!
-30/1/2024 [Deep]  [[31mError[0m] Stop!
-30/1/2024 [Deep]  [[32mInfo[0m] Fine!ifdjsiesdfju
-30/1/2024 [Deep]  [[32mInfo[0m] myInfo
+21-02-2024 09:39:53 [Deep] [Info] Fine! ifdjs iesdfju 
+21-02-2024 09:39:53 [Deep] [Warning] Carefull! 
+21-02-2024 09:39:53 [Deep] [Error] Stop! 
+21-02-2024 09:39:53 [Deep] [Info] Fine! ifdjs iesdfju 
+21-02-2024 09:39:53 [Deep] [Info] myInfo 

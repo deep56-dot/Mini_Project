@@ -1,7 +1,7 @@
 #ifndef date1
 #define date1
-#include "String.h"
-using Type::String;
+//#include "String.h"
+//using Type::String;
 namespace Utility {
 	class date {
 	private:
@@ -12,7 +12,7 @@ namespace Utility {
 		bool isDateValid(const date&) const;
 		int DaysInMonth(int, int) const;
 		mutable bool cache_valid = false;
-		mutable String cache{};
+		mutable std::string cache{};
 	public:
 		date(int dd, int mm, int yy) : d{ dd }, m{ mm }, y{ yy } {}
 		void setDate(int , int , int );
@@ -23,7 +23,7 @@ namespace Utility {
 		date& addMonth(int);
 		date& addDay(int);
 		date& addYear(int);
-		String getstringval() const;
+		std::string getstringval() const;
 		
 	};
 }

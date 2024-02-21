@@ -5,15 +5,15 @@
 #include<iostream>
 #include "String.h"
 
-using Type::String;
+using std::string;
 
 class MyException {
-	String message;
+	std::string message;
 
 public:
 	MyException() : message{ "Something Went Wrong" }{}
-	MyException(String m) : message{m} {}
-	String getmessage()  const{
+	MyException(std::string m) : message{m} {}
+	std::string getmessage()  const{
 		return message;
 	}
 };

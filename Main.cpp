@@ -1,11 +1,8 @@
 #include <iostream>
+#include<string>
 #include "./Include/Log.h"
 #include "./Include/Date.h"
-#include "./Include/String.h"
 #include "./Include/logger.h"
-
-using Utility::date;
-using Type::String;
 using loging::Log;
 
 

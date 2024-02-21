@@ -3,10 +3,8 @@
 
 #include<memory>
 #include "Log.h"
-#include "String.h"
 #include <fstream>
 using loging::Log;
-using Type::String;
 namespace loging {
 
     
@@ -20,25 +18,23 @@ namespace loging {
         mylogger = l;
     }
 
-    void flushBuffer(Type::String fn, Type::String buffer) {
-        std::ofstream of(fn.getString(), std::ios::app);
+    void flushBuffer(std::string fn, std::string buffer) {
+        std::ofstream of(fn, std::ios::app);
         of <<buffer;
-        std::cout << "files dumped succesfully\n";
     }
 
     template<typename... T>
     void Log::log(Log::Level l, T... arg) {
         if (m_LogLevel >= l) {
-            String tmp = d1.getstringval();
-            std::cout << d1.getstringval();
-            std::cout << " [" << Log::logger << "] ";
-           tmp.append(" [");
-           tmp.append(String(Log::logger));
-            tmp.append("] ");
-            std::cout << " [" << default_logger()->getlevel(l) << "] ";
+            std::string tmp = cacheTime();
+            std::cout << cacheTime() << " ";
+            std::cout <<"["<<Log::logger<<"]" << " ";
             tmp.append(" [");
-            tmp.append(String(default_logger()->getlevel(l)));
-            tmp.append("] ");
+           tmp.append(std::string(Log::logger));
+           tmp.append("] ");
+            std::cout << default_logger()->getlevelwithColor(l)<<" ";
+            tmp.append((default_logger()->getlevel(l)));
+            tmp.append(" ");
             Log::print(arg...);
             if (this->fileDump) {
                 this->logBuffer.append(tmp);
